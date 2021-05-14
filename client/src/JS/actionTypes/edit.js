@@ -1,0 +1,3 @@
+export const TOGGLE_ORDER = "TOGGLE_ORDER";
+export const TOGGLE_SELLER = "TOGGLE_SELLER";
+

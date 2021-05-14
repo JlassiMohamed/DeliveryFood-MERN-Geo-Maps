@@ -1,0 +1,29 @@
+{
+  "name": "final_mern_project",
+  "version": "1.0.0",
+  "description": "online delivery foods ",
+  "main": "index.js",
+  "scripts": {
+    "back": "nodemon server.js",
+    "front": "cd client && npm start",
+    "dev": "concurrently \"npm run front\" \"npm run back\" "
+  },
+  "author": "Mohamed_and_Emna",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.2",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}

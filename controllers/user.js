@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 const jwt = require("jsonwebtoken");
+const Cart = require("../models/Cart");
 
 exports.SignUp = async (req, res) => {
   try {
@@ -24,7 +25,6 @@ exports.SignUp = async (req, res) => {
     newUser.password = hashedpassword;
 
     // create a key using json webtoken
-    // !!!!! if you redirect the user to signin after the signup then there will be no need to create a token in signup !!!!!!!
     const token = jwt.sign(
       {
         id: newUser._id,
@@ -33,7 +33,16 @@ exports.SignUp = async (req, res) => {
       { expiresIn: 60 * 60 }
     );
     //then we save it in the database
-    await newUser.save();
+    const user = await newUser.save();
+
+    if (user.role === "user") {
+      let newCart = await Cart.create({
+        userId: user._id,
+        products: [],
+      });
+      await user.updateOne({ $set: { cart: newCart._id } });
+    }
+
     res.status(200).send({ msg: "user saved succ", user: newUser, token });
   } catch (error) {
     console.log(error);
@@ -92,7 +101,6 @@ exports.get_User = async (req, res) => {
 
 exports.update_User = async (req, res) => {
   try {
-    // let userId = req.params.id;
     let userId = req.user._id;
     const result = await User.updateOne(
       { _id: userId },
@@ -110,10 +118,10 @@ exports.update_User = async (req, res) => {
 };
 
 exports.delete_User = async (req, res) => {
-  // let userId = req.params.id;
   let userId = req.user._id;
   try {
     const result = await User.deleteOne({ _id: userId });
+
     !result.n
       ? res.status(400).send({ message: `user contact was already deleted` })
       : res.status(200).send({ user: result, message: `user contact deleted` });

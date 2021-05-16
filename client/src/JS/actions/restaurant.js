@@ -50,8 +50,11 @@ export const editRestaurant = (id, restaurant, history) => async (dispatch) => {
 };
 
 export const deleteRestaurant = (id) => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
   try {
-    await axios.delete(`/api/restaurant/${id}`);
+    await axios.delete(`/api/restaurant/${id}`, config);
     dispatch(getRestaurants());
   } catch (error) {
     dispatch({
@@ -73,4 +76,3 @@ export const getRestaurant = (id) => async (dispatch) => {
     });
   }
 };
-

@@ -11,6 +11,7 @@ const userSchema = new Schema({
   address: { type: String, required: true },
   role: { type: String, default: "user", required: true },
   restaurant: { type: Schema.Types.ObjectId, ref: "restaurant" },
+  cart: { type: Schema.Types.ObjectId, ref: "cart" },
 });
 
 module.exports = User = model("user", userSchema);

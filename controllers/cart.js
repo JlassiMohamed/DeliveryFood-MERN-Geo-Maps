@@ -64,3 +64,18 @@ exports.addItemToCart = async (req, res) => {
       .send({ errors: [{ msg: `Something went wrong, ${error}` }] });
   }
 };
+
+exports.deleteCart = async (req, res) => {
+  // let userId = req.params.id;
+  let cartId = req.user.cart;
+  try {
+    const result = await Cart.deleteOne({ _id: cartId });
+    !result.n
+      ? res.status(400).send({ message: `Cart was already deleted` })
+      : res.status(200).send({ user: result, message: `Cart deleted` });
+  } catch (error) {
+    res
+      .status(400)
+      .send({ message: `there is no cart with this id, ${error}` });
+  }
+};

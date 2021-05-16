@@ -9,23 +9,16 @@ const Restaurant = ({ match }) => {
   const { restaurantId } = match.params;
   const restaurant = useSelector((state) => state.restaurantReducer.restaurant);
   const edit = useSelector((state) => state.editReducer.edit);
-  const {
-    name,
-    imageUrl,
-    email,
-    phone,
-    address,
-    tags,
-    minOrderAmount,
-    items,
-  } = restaurant;
+  const { name, imageUrl, email, phone, address, tags, minOrderAmount, items } =
+    restaurant;
   let itemList = items === undefined ? [] : items;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!edit) {//?????????????????????????
+    //???????????????????!!!!!!!????????????????????????
+    if (!edit) {
       dispatch(getRestaurant(restaurantId));
     }
-  }, [dispatch, restaurantId, edit]); // [dispatch, restaurantId, items] !!!!!!!!!!!!!!!!!!!!
+  }, [dispatch, restaurantId, edit]); // [dispatch, restaurantId, items, edit] !!!!!!!!!!!!!!!!!!!!
   return (
     <div>
       <hr />

@@ -13,7 +13,7 @@ const Navbar = () => {
   // console.log(user);
   // console.log(user.restaurant);
 
-  let active = cart.active === undefined ? null : cart.active;
+  let active = cart.active === false ? null : cart.active; //undefined || null
   const dispatch = useDispatch();
   const getCartCount = () => {
     let products = cart.products === undefined ? [] : cart.products;

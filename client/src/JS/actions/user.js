@@ -11,8 +11,8 @@ import {
 
 import axios from "axios";
 import { toggleOrder, toggleSeller } from "./edit";
-import { getCart } from "./cart";
-import { getRestaurant } from "./restaurant";
+import { deleteCart, getCart } from "./cart";
+import { deleteRestaurant, getRestaurant } from "./restaurant";
 
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
@@ -73,8 +73,11 @@ export const currentUser = () => async (dispatch) => {
 };
 
 export const getUser = () => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
   try {
-    let result = await axios.get(`/api/user`);
+    let result = await axios.get(`/api/user`, config);
     console.log(result);
     dispatch({ type: GET_USER, payload: result.data }); //payload={message:"",user:{}}
   } catch (error) {
@@ -86,8 +89,11 @@ export const getUser = () => async (dispatch) => {
 };
 
 export const editUser = (newContact) => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
   try {
-    await axios.put(`/api/user`, newContact);
+    await axios.put(`/api/user`, newContact, config);
     dispatch(getUser());
   } catch (error) {
     dispatch({
@@ -98,9 +104,17 @@ export const editUser = (newContact) => async (dispatch) => {
 };
 
 export const deleteUser = (history) => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
   try {
-    await axios.delete(`/api/user`);
-    history.push("/");
+    let result = await axios.get(`/api/user`, config);
+    result.data.user.role === "user"
+      ? dispatch(deleteCart())
+      : dispatch(deleteRestaurant(result.data.user.restaurant));
+    await axios.delete(`/api/user`, config);
+    history.push("/signup");
+    dispatch(logout());
   } catch (error) {
     dispatch({
       type: FAIL_USER,

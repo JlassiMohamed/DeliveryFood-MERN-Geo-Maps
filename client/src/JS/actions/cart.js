@@ -47,3 +47,17 @@ export const deleteItemCart = (productId) => async (dispatch) => {
     });
   }
 };
+
+export const deleteCart = () => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
+  try {
+    await axios.delete(`/api/cart`, config);
+  } catch (error) {
+    dispatch({
+      type: FAIL_CART,
+      payload: error.response,
+    });
+  }
+};

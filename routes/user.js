@@ -7,6 +7,7 @@ const {
   get_User,
   update_User,
   delete_User,
+  reset_PassWord,
 } = require("../controllers/user");
 const isAuth = require("../middlewares/auth_jwt");
 const {
@@ -24,6 +25,8 @@ router.get("/current", isAuth, (req, res) => {
 });
 
 router.get("/", isAuth, get_User);
+
+router.put("/reset", isAuth, reset_PassWord);
 
 router.put("/", isAuth, update_User);
 

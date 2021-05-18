@@ -57,8 +57,8 @@ const userReducer = (state = initialState, { type, payload }) => {
     case FAIL_USER:
       return { ...state, loadUser: false, errors: payload };
     case LOGOUT_USER:
-      localStorage.removeItem("token");
       // localStorage.clear(); // delate all keys, from local Storage
+      localStorage.removeItem("token");
       return {
         ...state,
         loadUser: false,

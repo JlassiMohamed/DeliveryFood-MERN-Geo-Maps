@@ -88,6 +88,22 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
+export const resetPassword = (passwords, history) => async (dispatch) => {
+  const config = {
+    headers: { Authorization: localStorage.getItem("token") },
+  };
+  try {
+    await axios.put(`/api/user/reset`, passwords, config);
+    history.push("/signin");
+    dispatch(logout());
+  } catch (error) {
+    dispatch({
+      type: FAIL_USER,
+      payload: error.response,
+    });
+  }
+};
+
 export const editUser = (newContact) => async (dispatch) => {
   const config = {
     headers: { Authorization: localStorage.getItem("token") },

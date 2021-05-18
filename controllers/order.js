@@ -125,10 +125,9 @@ exports.get_order = async (req, res) => {
 
 exports.checkout = async (req, res) => {
   try {
-    const userId = req.params.userId;
-    // const userId = req.user._id;
     // const { source } = req.body;
-
+    // const userId = req.user._id;
+    const userId = req.params.userId;
     let cart = await Cart.findOne({ userId });
     let user = await User.findOne({ _id: userId });
     const name = user.name;
@@ -146,7 +145,6 @@ exports.checkout = async (req, res) => {
         }, []);
       };
       let arr = cart.products.groupBy("restaurantId");
-
       for (const product of arr) {
         const restaurantId = product[0].restaurantId;
         let restaurant = await Restaurant.findOne({ _id: restaurantId });

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import CartItem from "../../Components/CartItem/CartItem";
 import { deleteItemCart, getCart, postCart } from "../../JS/actions/cart";
 import { checkout } from "../../JS/actions/order";
+import { editUser } from "../../JS/actions/user";
+import CartItem from "../../Components/CartItem/CartItem";
 import "./Cart.css";
 
 const Cart = ({ history }) => {
@@ -12,6 +13,8 @@ const Cart = ({ history }) => {
   const user = useSelector((state) => state.userReducer.user);
   const cart = useSelector((state) => state.cartReducer.cart);
 
+  let phone = user === null ? null : user.phone;
+  let address = user === null ? null : user.address;
   let userId = user === null ? null : user._id;
   let active = cart.active === undefined ? null : cart.active;
   let products = cart.products === undefined ? [] : cart.products;
@@ -37,9 +40,13 @@ const Cart = ({ history }) => {
       .toFixed(2);
   };
 
-  const [order, setOrder] = useState({});
+  const [details, setDetails] = useState({ phone, address });
+  useEffect(() => {
+    setDetails({ phone, address });
+  }, [phone, address]);
+  console.log(details);
   const handleChange = (e) => {
-    setOrder({ ...order, [e.target.name]: e.target.value });
+    setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
   const [place, setPlace] = useState(false);
@@ -50,6 +57,12 @@ const Cart = ({ history }) => {
       dispatch(checkout(userId, history));
       dispatch(getCart());
     }
+  };
+  const [save, setSave] = useState(false);
+  const handleData = (e) => {
+    e.preventDefault();
+    dispatch(editUser(details));
+    setSave(true);
   };
 
   return (
@@ -70,31 +83,54 @@ const Cart = ({ history }) => {
               />
             ))
           )}
+          <br />
           {place ? (
-            <form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <label>Current address</label>
-              <input
-                name="address"
-                value={order.address}
-                onChange={handleChange}
-                placeholder="enter your current address"
-                style={{ width: "200px" }}
-              />
-              <label>Current phone</label>
-              <input
-                name="phone"
-                value={order.phone}
-                onChange={handleChange}
-                placeholder="enter your current mobile number"
-                style={{ width: "200px" }}
-              />
-            </form>
+            <div>
+              {!save ? (
+                <p>
+                  Please, make sure your current address for delivery is
+                  updated! Otherwise change it and click to save.
+                </p>
+              ) : null}
+              <form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <label>Current address:</label>
+                {!save ? (
+                  <input
+                    name="address"
+                    value={details.address}
+                    onChange={handleChange}
+                    placeholder="enter your current address"
+                    style={{ width: "400px" }}
+                  />
+                ) : (
+                  <p>{details.address}</p>
+                )}
+                <label>Current phone:</label>
+                {!save ? (
+                  <input
+                    name="phone"
+                    value={details.phone}
+                    onChange={handleChange}
+                    placeholder="enter your current mobile number"
+                    style={{ width: "200px" }}
+                  />
+                ) : (
+                  <p>{details.phone}</p>
+                )}
+              </form>
+              {!save ? (
+                <button onClick={handleData}>save</button>
+              ) : (
+                // <button onClick={() => setSave(false)}>Edit</button>
+                <i class="far fa-edit" onClick={() => setSave(false)}></i>
+              )}
+            </div>
           ) : null}
         </div>
         <div className="cartscreen__right">

@@ -104,9 +104,15 @@ const ProfileEdit = ({ userToEdit }) => {
   );
   return (
     <div>
-      <button onClick={handleOpen} style={{ width: "4rem", height: "2rem" }}>
-        Edit
-      </button>
+      <span>
+        If you want to update your contact information, please click on:{" "}
+      </span>
+      <a
+        onClick={handleOpen}
+        style={{ width: "4rem", height: "2rem", color: "blue" }}
+      >
+        Setting
+      </a>
       <Modal
         open={open}
         onClose={handleClose}

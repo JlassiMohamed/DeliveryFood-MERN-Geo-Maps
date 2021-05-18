@@ -86,6 +86,33 @@ exports.SignIn = async (req, res) => {
   }
 };
 
+exports.reset_PassWord = async (req, res) => {
+  try {
+    let userId = req.user._id;
+    const { password, newPassword } = req.body;
+    const user = await User.findOne({ _id: userId });
+    const hashedpass = user.password;
+    const result = await bcrypt.compare(password, hashedpass);
+    if (result && newPassword.length >= 6) {
+      const hashedNewPassword = bcrypt.hashSync(newPassword, salt);
+      ////////////////////////
+      user.password = hashedNewPassword;
+      const newUser = await user.save();
+      res.status(200).send({ msg: "password updated succ", user: newUser });
+
+      // await User.updateOne(
+      //   { _id: userId },
+      //   { $set: { password: hashedNewPassword } }
+      // );
+    } else {
+      res.status(400).send({ errors: [{ msg: "Bad Credential" }] });
+      return;
+    }
+  } catch (error) {
+    res.status(400).send({ message: `can not save the change, ${error}` });
+  }
+};
+
 exports.get_User = async (req, res) => {
   try {
     let userId = req.user._id;

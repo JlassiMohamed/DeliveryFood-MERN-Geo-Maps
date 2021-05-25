@@ -15,6 +15,7 @@ import UserRoute from "./router/UserRoute";
 import Restaurant from "./Pages/Restaurant/Restaurant";
 import Orders from "./Pages/Orders/Orders";
 import Profile from "./Pages/Profile/Profile";
+import Filter from "./Components/Filter/Filter";
 import "./App.css";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
           <Route path="/profile" component={Profile} />
+          <Route path="/filter" component={Filter} />
           <Route
             path={["/addrestaurant", "/setting"]}
             component={AddRestaurant}

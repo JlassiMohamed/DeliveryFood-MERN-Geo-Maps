@@ -1,0 +1,56 @@
+.header {
+  background-image: url("https://www.softsuave.com/blog/wp-content/uploads/2020/03/Food-Delivery-app-development-softsuave.png");
+  margin-top: -1%;
+}
+
+.introduction {
+  flex: 1;
+  padding-left: 60;
+  height: "340px";
+  position: "relative";
+}
+.safeFood {
+  font-size: 50;
+  font-weight: 400;
+}
+.delivery {
+  color: "#d2691e";
+  font-size: "300%";
+  font-weight: "bold";
+  margin-top: -30;
+  margin-bottom: 20;
+  margin-left: "1%";
+}
+.paragraph {
+  width: 400;
+  font-size: 18;
+  margin-right: "100%";
+  color: "#881515";
+}
+.cover {
+  flex: 1;
+  display: "flex";
+  justify-content: "center";
+  height: "72vh";
+}
+.coverImg {
+  height: "500px";
+  width: "700%";
+  margin-left: "200%";
+  margin-top: "-10%";
+  position: "relative";
+}
+.ctaOrder {
+  font-size: 18;
+  background-color: "#380303";
+  color: "#d2691e";
+  margin-top: 30;
+  margin-left: "5%";
+}
+.input {
+  margin-top: "45%";
+  left: "26%";
+  z-index: 999;
+  width: 760;
+  height: "15%";
+}

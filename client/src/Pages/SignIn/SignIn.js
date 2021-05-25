@@ -20,7 +20,7 @@ const SignIn = ({ history }) => {
     };
   }, [dispatch]);
   return (
-    <div className="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    /* <div className="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
       {errors.length > 0 ? errors.map((el) => <Errors error={el} />) : null}
       <div className="card card0 border-0">
         <div className="row d-flex">
@@ -97,6 +97,149 @@ const SignIn = ({ history }) => {
           </div>
         </div>
       </div>
+    </div>*/
+    <div>
+      {errors.length > 0 ? errors.map((el) => <Errors error={el} />) : null}
+      <div className="container" id="container">
+        <div className="form-container sign-up-container">
+          <h1>Create Account</h1>
+          <div className="social-container">
+            <a className="social">
+              <i className="fab fa-facebook-f" />
+            </a>
+            <a className="social">
+              <i className="fab fa-google-plus-g" />
+            </a>
+            <a className="social">
+              <i className="fab fa-linkedin-in" />
+            </a>
+          </div>
+
+          <span>or use your email for registration</span>
+          <h6>Name</h6>
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            placeholder="Enter a valid Name"
+          />
+          <input
+            type="lastName"
+            type="text"
+            name="lastName"
+            onChange={handleChange}
+            placeholder="Enter a valid LastName"
+          />
+          <input
+            type="text"
+            name="email"
+            onChange={handleChange}
+            placeholder="Enter a valid email address"
+          />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Enter phone"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="Enter password"
+          />
+          <label for="pet-select">Role:</label>
+          <select name="role" id="pet-select" onChange={handleChange}>
+            <option value="">--Please choose an option--</option>
+            <option value="user">user</option>
+            <option value="seller">seller</option>
+          </select>
+          <br />
+        </div>
+        <div
+          className="form-container sign-in-container"
+          style={{ height: "100%" }}
+        >
+          <div className="social-container">
+            <a className="social">
+              <i className="fab fa-facebook-f" />
+            </a>
+            <a className="social">
+              <i className="fab fa-google-plus-g" />
+            </a>
+            <a className="social">
+              <i className="fab fa-linkedin-in" />
+            </a>
+          </div>
+
+          <h1 className="signup">Sign In</h1>
+          <hr />
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            onChange={handleChange}
+            placeholder="Enter a valid email address"
+          />
+          <br />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="Enter password"
+          />
+        </div>
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                To keep connected with us please login with your personal info
+              </p>
+              <button className="ghost" id="signIn">
+                Sign In
+              </button>
+            </div>
+
+            <div className="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button
+                type="submit"
+                className="btn btn-blue text-center"
+                onClick={() => dispatch(login(user, history))}
+              >
+                SignIn
+              </button>
+              <div className="row mb-4 px-3">
+                <small className="font-weight-bold">
+                  Don't have an account?
+                  <a className="text-danger" href="/">
+                    <Link to="/signup">Register</Link>
+                  </a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Created with <i className="fa fa-heart" /> by
+          <a target="_blank" href="https://florin-pop.com">
+            Florin Pop
+          </a>
+          - Read how I created this and how you can join the challenge
+          <a
+            target="_blank"
+            href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/"
+          >
+            here
+          </a>
+        </p>
+      </footer>
     </div>
   );
 };

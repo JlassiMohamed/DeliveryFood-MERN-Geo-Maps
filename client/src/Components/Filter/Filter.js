@@ -10,6 +10,9 @@ const Filter = () => {
       width: 700,
       height: "15%",
     },
+    p: {
+      color: "#852938",
+    },
   }));
   const classes = useStyles();
   const [address, setAdress] = useState("");
@@ -25,7 +28,9 @@ const Filter = () => {
 
   return (
     <div className={classes.input}>
-      <span>Enter your address and select the nearby restaurant</span>
+      <h6 className={classes.p}>
+        Enter your address and select the nearby restaurant
+      </h6>
       <input
         value={address}
         onChange={(e) => setAdress(e.target.value)}

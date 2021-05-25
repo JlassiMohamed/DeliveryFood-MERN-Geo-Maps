@@ -2,10 +2,11 @@
   display: flex;
   max-width: 1300px;
   margin: 2rem auto;
+  margin-left: 40%;
 }
 
 .container_box {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
 }
 

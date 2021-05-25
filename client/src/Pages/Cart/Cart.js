@@ -5,6 +5,7 @@ import { deleteItemCart, getCart, postCart } from "../../JS/actions/cart";
 import { checkout } from "../../JS/actions/order";
 import { editUser } from "../../JS/actions/user";
 import CartItem from "../../Components/CartItem/CartItem";
+import { Card } from "react-bootstrap";
 import "./Cart.css";
 
 const Cart = ({ history }) => {
@@ -92,44 +93,44 @@ const Cart = ({ history }) => {
                   updated! Otherwise change it and click to save.
                 </p>
               ) : null}
-              <form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <label>Current address:</label>
-                {!save ? (
-                  <input
-                    name="address"
-                    value={details.address}
-                    onChange={handleChange}
-                    placeholder="enter your current address"
-                    style={{ width: "400px" }}
-                  />
-                ) : (
-                  <p>{details.address}</p>
-                )}
-                <label>Current phone:</label>
-                {!save ? (
-                  <input
-                    name="phone"
-                    value={details.phone}
-                    onChange={handleChange}
-                    placeholder="enter your current mobile number"
-                    style={{ width: "200px" }}
-                  />
-                ) : (
-                  <p>{details.phone}</p>
-                )}
-              </form>
-              {!save ? (
-                <button onClick={handleData}>save</button>
-              ) : (
-                // <button onClick={() => setSave(false)}>Edit</button>
-                <i class="far fa-edit" onClick={() => setSave(false)}></i>
-              )}
+              <Card className="card2" border="dark" style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Text>
+                    <label>Current address:</label>
+                    {!save ? (
+                      <input
+                        name="address"
+                        value={details.address}
+                        onChange={handleChange}
+                        placeholder="enter your current address"
+                        style={{ width: "200px" }}
+                      />
+                    ) : (
+                      <p>{details.address}</p>
+                    )}
+                    <label>Current phone:</label>
+                    {!save ? (
+                      <input
+                        name="phone"
+                        value={details.phone}
+                        onChange={handleChange}
+                        placeholder="enter your current mobile number"
+                        style={{ width: "200px" }}
+                      />
+                    ) : (
+                      <p>{details.phone}</p>
+                    )}
+                    {!save ? (
+                      <button className="button" onClick={handleData}>
+                        save
+                      </button>
+                    ) : (
+                      // <button onClick={() => setSave(false)}>Edit</button>
+                      <i class="far fa-edit" onClick={() => setSave(false)}></i>
+                    )}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             </div>
           ) : null}
         </div>

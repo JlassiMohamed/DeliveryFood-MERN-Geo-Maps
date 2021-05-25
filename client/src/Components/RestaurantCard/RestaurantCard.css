@@ -1,0 +1,10 @@
+.card1 {
+  display: flex;
+}
+.button {
+  font-size: 30;
+  background-color: rgb(83, 3, 3);
+  color: rgb(241, 134, 33);
+
+  margin-left: "100%";
+}

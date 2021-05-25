@@ -48,11 +48,12 @@ const Orders = ({ match }) => {
                 {/* <p>User id: #{user ? user._id : null}</p> */}
                 <p>
                   <span>Order: #{order._id}</span>
-                  <br />
+                  <hr />
                   <span>date: {order.date_added}</span>
                 </p>
                 <p>
                   <span>Client is: {order.user.name}, </span>
+                  <hr />
                   <span>{order.user.address}</span>
                   <br />
                   <span>mobile: {order.user.mobile}</span>

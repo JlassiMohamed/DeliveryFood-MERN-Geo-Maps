@@ -1,0 +1,14 @@
+.carousel {
+  width: 100%;
+  margin-left: "10%";
+  margin-top: "10%";
+  box-shadow: 0 10px 50px red;
+}
+.resto {
+  width: 80%;
+  margin-top: "-1%";
+  margin-left: 10%;
+}
+.cart {
+  margin-top: "10%";
+}

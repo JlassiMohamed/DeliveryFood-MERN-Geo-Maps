@@ -231,13 +231,6 @@ const Profile = ({ history }) => {
           </div>
         </div>
       ) : null}
-
-      <div>
-        I understand the consequences, delete my account
-        <br />
-        <br />
-        <button onClick={() => setOmit(false)}>discard</button>
-      </div>
     </div>
   );
 };

@@ -50,7 +50,7 @@ const Navbar = () => {
 </Navbar>*/
     <header>
       <Link to="/">
-        <h2>DeliFood</h2>
+        <h1 className="title">DeliFood</h1>
       </Link>
       {isAuth && edit ? (
         <div className="welcome">

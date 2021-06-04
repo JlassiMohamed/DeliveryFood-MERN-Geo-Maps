@@ -6,7 +6,7 @@ import ItemCard from "../../Components/ItemCard/ItemCard";
 import AddItem from "../../Components/AddItem/AddItem";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, Button, Carousel } from "react-bootstrap";
+import { Card, Carousel } from "react-bootstrap";
 import "./Restaurant.css";
 const useStyles = makeStyles((theme) => ({
   presentation: {
@@ -15,13 +15,12 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     minHeight: "80vh",
     alignItems: "center",
-    ["@media (max-width:1024px)"]: {
-      flexDirection: "column",
-    },
+    // ["@media (max-width:1024px)"]: {
+    //   flexDirection: "column",
+    // },
   },
 
   paragraph: {
-    fontSize: "300%",
     width: 400,
     fontSize: 18,
     marginRight: "150%",
@@ -69,11 +68,11 @@ const Restaurant = ({ match }) => {
   let itemList = items === undefined ? [] : items;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!edit) {
+    // if (!edit) {
       //?????????????????????????
       dispatch(getRestaurant(restaurantId));
-    }
-  }, [dispatch, restaurantId, edit]); // [dispatch, restaurantId, items] !!!!!!!!!!!!!!!!!!!!
+    // }
+  }, [dispatch, restaurantId, edit, items]); // [dispatch, restaurantId, items] !!!!!!!!!!!!!!!!!!!!
   return (
     <div>
       <header className={classes.header}>

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../JS/actions/user";
-import { Nav } from "react-bootstrap";
+// import { Nav } from "react-bootstrap";
 import "./Navbar.css";
 
 const Navbar = () => {

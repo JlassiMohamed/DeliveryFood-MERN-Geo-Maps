@@ -100,7 +100,7 @@ export default function Footer() {
                 className="paragraphe"
                 variant="body1"
                 component="p"
-                className={classes.paragraphe}
+                // className={classes.paragraphe}
               >
                 Get more out of your business, without losing focus on what is
                 most important — delighting your customers

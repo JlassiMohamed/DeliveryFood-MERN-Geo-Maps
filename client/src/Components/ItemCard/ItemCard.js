@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const ItemCard = ({ item }) => {
   const classes = useStyles();
-  const { _id, imageUrl, title, description, tags, price, restaurant } = item;
+  const { _id, imageUrl, title, description, price, restaurant } = item; //, tags
   // console.log(item);
   const dispatch = useDispatch();
   const edit = useSelector((state) => state.editReducer.edit);

@@ -110,6 +110,7 @@ const ProfileEdit = ({ userToEdit }) => {
       <a
         onClick={handleOpen}
         style={{ width: "4rem", height: "2rem", color: "blue" }}
+        href="#"
       >
         Setting
       </a>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";//, useState
+import { useDispatch } from "react-redux";//, useSelector
 import { getRestaurants } from "../../JS/actions/restaurant";
-import RestaurantCard from "../../Components/RestaurantCard/RestaurantCard";
+// import RestaurantCard from "../../Components/RestaurantCard/RestaurantCard";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -76,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Landpage = () => {
-  const [address, setAdress] = useState("");
+  let address = ""
+  // const [address, setAdress] = useState("");
   // const load = useSelector((state) => state.restaurantReducer.load);
   /*const restaurantList = useSelector(
     (state) => state.restaurantReducer.restaurantList

@@ -93,7 +93,7 @@ const Cart = ({ history }) => {
                   updated! Otherwise change it and click to save.
                 </p>
               ) : null}
-              <Card className="card2" border="dark" style={{ width: "18rem" }}>
+              <Card className="card3" border="dark" style={{ width: "18rem" }}>
                 <Card.Body>
                   <Card.Text>
                     <label>Current address:</label>
